@@ -114,6 +114,7 @@ class Board extends Component {
                                 context.phantomPiece[context.targetSquare]
                               }
                               pieces={context.pieces}
+                              showNotation={context.showNotation}
                             />
                           )}
 

@@ -396,7 +396,7 @@ class Chessboard extends Component {
         >
           <div>
             {sparePieces && <SparePieces.Top />}
-            <Board {...this.props} />
+            <Board />
             {sparePieces && <SparePieces.Bottom />}
           </div>
           <CustomDragLayer

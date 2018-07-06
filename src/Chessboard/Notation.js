@@ -1,17 +1,6 @@
 /* eslint react/prop-types: 0 */
-
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-
-Notation.propTypes = {
-  row: PropTypes.number,
-  col: PropTypes.number,
-  alpha: PropTypes.array,
-  orientation: PropTypes.string,
-  width: PropTypes.number,
-  lightSquareStyle: PropTypes.object,
-  darkSquareStyle: PropTypes.object
-};
 
 const getRow = (orientation, row) =>
   orientation === 'white' ? row + 1 : row - 1;
@@ -19,62 +8,82 @@ const getRow = (orientation, row) =>
 const getColumn = (orientation, alpha, col) =>
   orientation === 'black' ? alpha[7 - col] : alpha[col];
 
-function Notation({
-  row,
-  col,
-  alpha,
-  orientation,
-  width,
-  lightSquareStyle,
-  darkSquareStyle
-}) {
-  const whiteColor = lightSquareStyle.backgroundColor;
-  const blackColor = darkSquareStyle.backgroundColor;
-
-  const isRow = col === 0;
-  const isColumn =
-    (orientation === 'white' && row === 0) ||
-    (orientation === 'black' && row === 9);
-  const isBottomLeftSquare = isRow && isColumn;
-
-  if (isBottomLeftSquare) {
-    return renderBottomLeft({
-      orientation,
-      row,
-      width,
-      alpha,
-      col,
-      whiteColor
-    });
+class Notation extends Component {
+  static propTypes = {
+    row: PropTypes.number,
+    col: PropTypes.number,
+    alpha: PropTypes.array,
+    orientation: PropTypes.string,
+    width: PropTypes.number,
+    lightSquareStyle: PropTypes.object,
+    darkSquareStyle: PropTypes.object
+  };
+  shouldComponentUpdate(nextProps) {
+    if (this.props.showNotation !== nextProps.showNotation) {
+      return true;
+    }
+    return false;
   }
 
-  if (isColumn) {
-    return renderLetters({
-      orientation,
+  render() {
+    const {
       row,
-      width,
-      alpha,
       col,
-      whiteColor,
-      blackColor
-    });
-  }
-
-  if (isRow) {
-    return renderNumbers({
+      alpha,
       orientation,
-      row,
       width,
-      alpha,
-      col,
-      whiteColor,
-      blackColor,
-      isRow,
-      isBottomLeftSquare
-    });
-  }
+      lightSquareStyle,
+      darkSquareStyle
+    } = this.props;
 
-  return null;
+    const whiteColor = lightSquareStyle.backgroundColor;
+    const blackColor = darkSquareStyle.backgroundColor;
+
+    const isRow = col === 0;
+    const isColumn =
+      (orientation === 'white' && row === 0) ||
+      (orientation === 'black' && row === 9);
+    const isBottomLeftSquare = isRow && isColumn;
+
+    if (isBottomLeftSquare) {
+      return renderBottomLeft({
+        orientation,
+        row,
+        width,
+        alpha,
+        col,
+        whiteColor
+      });
+    }
+
+    if (isColumn) {
+      return renderLetters({
+        orientation,
+        row,
+        width,
+        alpha,
+        col,
+        whiteColor,
+        blackColor
+      });
+    }
+
+    if (isRow) {
+      return renderNumbers({
+        orientation,
+        row,
+        width,
+        alpha,
+        col,
+        whiteColor,
+        blackColor,
+        isRow,
+        isBottomLeftSquare
+      });
+    }
+
+    return null;
+  }
 }
 
 export default Notation;
