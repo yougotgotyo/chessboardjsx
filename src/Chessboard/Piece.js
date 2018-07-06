@@ -106,7 +106,6 @@ const pieceSource = {
     // check if target board is source board
     if (board === dropBoard && didDrop) {
       if (onDrop.length) {
-        console.log('ondrop length', onDrop.length);
         wasManuallyDropped(true);
         // execute user's logic
         return onDrop(props.currentSquare, dropResults.target);
