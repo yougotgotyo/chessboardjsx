@@ -12,10 +12,19 @@ class Row extends Component {
   };
 
   state = {
-    square: '',
-    col: 0,
-    row: 0
+    mounted: false
   };
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
+  // shouldComponentUpdate(nextProps) {
+  //   if (!this.state.mounted) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   render() {
     const { width, boardStyle, orientation, children } = this.props;
@@ -33,13 +42,15 @@ class Row extends Component {
           return (
             <div key={r.toString()} style={rowStyles}>
               {[...Array(8)].map((_, col) => {
+                console.log('here');
                 let square =
                   orientation === 'black'
                     ? alpha[7 - col] + (row - 1)
                     : alpha[col] + (row + 1);
 
-                if (col !== 0)
+                if (col !== 0) {
                   squareColor = squareColor === 'black' ? 'white' : 'black';
+                }
                 return children({ square, squareColor, col, row, alpha });
               })}
             </div>

@@ -328,7 +328,11 @@ class Chessboard extends Component {
     if (dropOffBoard === 'trash' && !targetSquare) {
       let newPosition = currentPosition;
       delete newPosition[sourceSquare];
-      this.setState({ currentPosition: newPosition });
+      this.setState({
+        currentPosition: newPosition,
+        sourceSquare,
+        targetSquare
+      });
       // get board position for user
       return getPosition(currentPosition);
     }
@@ -337,7 +341,11 @@ class Chessboard extends Component {
     sourceSquare !== 'spare' && delete newPosition[sourceSquare];
     newPosition[targetSquare] = piece;
 
-    this.setState(() => ({ currentPosition: newPosition }));
+    this.setState(() => ({
+      currentPosition: newPosition,
+      sourceSquare,
+      targetSquare
+    }));
     // get board position for user
     getPosition(currentPosition);
   };

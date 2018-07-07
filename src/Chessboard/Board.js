@@ -61,7 +61,11 @@ class Board extends Component {
           //               squareColor === 'black' ? 'white' : 'black';
 
           return (
-            <Row>
+            <Row
+              width={context.width}
+              boardStyle={context.boardStyle}
+              orientation={context.orientation}
+            >
               {({ square, squareColor, col, row, alpha }) => {
                 return (
                   <Fragment key={`${col}${row}`}>
