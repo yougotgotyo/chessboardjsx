@@ -36,128 +36,105 @@ class Board extends Component {
     let alpha = COLUMNS;
     let row = 8;
     let squareColor = 'white';
-    console.log('top');
 
     return (
       <Chessboard.Consumer>
         {context => {
           if (context.orientation === 'black') row = 1;
-          console.log('second');
+
+          // return (
+          // <div
+          //   style={{ ...boardStyles(context.width), ...context.boardStyle }}
+          // >
+          //   {[...Array(8)].map((_, r) => {
+          //     row = context.orientation === 'black' ? row + 1 : row - 1;
+          //
+          //     return (
+          //       <div key={r.toString()} style={rowStyles}>
+          //         {[...Array(8)].map((_, col) => {
+          //           let square =
+          //             context.orientation === 'black'
+          //               ? alpha[7 - col] + (row - 1)
+          //               : alpha[col] + (row + 1);
+          //
+          //           if (col !== 0)
+          //             squareColor =
+          //               squareColor === 'black' ? 'white' : 'black';
 
           return (
-            console.log('third') || (
-              <div
-                style={{ ...boardStyles(context.width), ...context.boardStyle }}
-              >
-                {[...Array(8)].map((_, r) => {
-                  row = context.orientation === 'black' ? row + 1 : row - 1;
+            <Square
+              key={col.toString()}
+              width={context.width}
+              square={square}
+              squareColor={squareColor}
+              setSquareCoordinates={this.setSquareCoordinates}
+              lightSquareStyle={context.lightSquareStyle}
+              darkSquareStyle={context.darkSquareStyle}
+              roughSquare={context.roughSquare}
+              selectedSquares={context.selectedSquares}
+              onMouseOverSquare={context.onMouseOverSquare}
+              onMouseOutSquare={context.onMouseOutSquare}
+              onHoverSquareStyle={context.onHoverSquareStyle}
+              selectedSquareStyle={context.selectedSquareStyle}
+              id={context.id}
+              screenWidth={context.screenWidth}
+              screenHeight={context.screenHeight}
+            >
+              {this.hasPiece(context.currentPosition, square) ? (
+                <Piece
+                  pieces={context.pieces}
+                  currentSquare={square}
+                  piece={context.currentPosition[square]}
+                  width={context.width}
+                  setPosition={context.setPosition}
+                  dropOffBoard={context.dropOffBoard}
+                  getSquareCoordinates={this.getSquareCoordinates}
+                  draggable={context.draggable}
+                  onDrop={context.onDrop}
+                  sourceSquare={context.sourceSquare}
+                  targetSquare={context.targetSquare}
+                  waitForTransition={context.waitForTransition}
+                  transitionDuration={context.transitionDuration}
+                  orientation={context.orientation}
+                  id={context.id}
+                  setTouchState={context.setTouchState}
+                  renderPieces={context.renderPieces}
+                  wasManuallyDropped={context.wasManuallyDropped}
+                />
+              ) : null}
 
-                  return (
-                    console.log('four') || (
-                      <div key={r.toString()} style={rowStyles}>
-                        {[...Array(8)].map((_, col) => {
-                          let square =
-                            context.orientation === 'black'
-                              ? alpha[7 - col] + (row - 1)
-                              : alpha[col] + (row + 1);
+              {this.showPhantom({
+                square,
+                targetSquare: context.targetSquare,
+                phantomPiece: context.phantomPiece
+              }) && (
+                <PhantomPiece
+                  width={context.width}
+                  phantomPieceValue={context.phantomPiece[context.targetSquare]}
+                  pieces={context.pieces}
+                  showNotation={context.showNotation}
+                />
+              )}
 
-                          if (col !== 0)
-                            squareColor =
-                              squareColor === 'black' ? 'white' : 'black';
-
-                          return (
-                            console.log('five') || (
-                              <Square
-                                key={col.toString()}
-                                width={context.width}
-                                square={square}
-                                squareColor={squareColor}
-                                setSquareCoordinates={this.setSquareCoordinates}
-                                lightSquareStyle={context.lightSquareStyle}
-                                darkSquareStyle={context.darkSquareStyle}
-                                roughSquare={context.roughSquare}
-                                selectedSquares={context.selectedSquares}
-                                onMouseOverSquare={context.onMouseOverSquare}
-                                onMouseOutSquare={context.onMouseOutSquare}
-                                onHoverSquareStyle={context.onHoverSquareStyle}
-                                selectedSquareStyle={
-                                  context.selectedSquareStyle
-                                }
-                                id={context.id}
-                                screenWidth={context.screenWidth}
-                                screenHeight={context.screenHeight}
-                              >
-                                {this.hasPiece(
-                                  context.currentPosition,
-                                  square
-                                ) ? (
-                                  <Piece
-                                    pieces={context.pieces}
-                                    currentSquare={square}
-                                    piece={context.currentPosition[square]}
-                                    width={context.width}
-                                    setPosition={context.setPosition}
-                                    dropOffBoard={context.dropOffBoard}
-                                    getSquareCoordinates={
-                                      this.getSquareCoordinates
-                                    }
-                                    draggable={context.draggable}
-                                    onDrop={context.onDrop}
-                                    sourceSquare={context.sourceSquare}
-                                    targetSquare={context.targetSquare}
-                                    waitForTransition={
-                                      context.waitForTransition
-                                    }
-                                    transitionDuration={
-                                      context.transitionDuration
-                                    }
-                                    orientation={context.orientation}
-                                    id={context.id}
-                                    setTouchState={context.setTouchState}
-                                    renderPieces={context.renderPieces}
-                                    wasManuallyDropped={
-                                      context.wasManuallyDropped
-                                    }
-                                  />
-                                ) : null}
-
-                                {this.showPhantom({
-                                  square,
-                                  targetSquare: context.targetSquare,
-                                  phantomPiece: context.phantomPiece
-                                }) && (
-                                  <PhantomPiece
-                                    width={context.width}
-                                    phantomPieceValue={
-                                      context.phantomPiece[context.targetSquare]
-                                    }
-                                    pieces={context.pieces}
-                                    showNotation={context.showNotation}
-                                  />
-                                )}
-
-                                {context.showNotation && (
-                                  <Notation
-                                    row={row}
-                                    col={col}
-                                    alpha={alpha}
-                                    orientation={context.orientation}
-                                    width={context.width}
-                                    lightSquareStyle={context.lightSquareStyle}
-                                    darkSquareStyle={context.darkSquareStyle}
-                                  />
-                                )}
-                              </Square>
-                            )
-                          );
-                        })}
-                      </div>
-                    )
-                  );
-                })}
-              </div>
-            )
+              {context.showNotation && (
+                <Notation
+                  row={row}
+                  col={col}
+                  alpha={alpha}
+                  orientation={context.orientation}
+                  width={context.width}
+                  lightSquareStyle={context.lightSquareStyle}
+                  darkSquareStyle={context.darkSquareStyle}
+                />
+              )}
+            </Square>
           );
+          //         })}
+          //       </div>
+          //     );
+          //   })}
+          // </div>
+          // );
         }}
       </Chessboard.Consumer>
     );
