@@ -4,32 +4,43 @@ import PropTypes from 'prop-types';
 import { COLUMNS } from './helpers';
 
 class Row extends Component {
-  static propTypes = {};
+  static propTypes = {
+    width: PropTypes.number,
+    orientation: PropTypes.string,
+    boardStyle: PropTypes.object,
+    children: PropTypes.func
+  };
 
   state = {
     square: '',
     col: 0,
     row: 0
   };
+
   render() {
+    const { width, boardStyle, orientation, children } = this.props;
     let alpha = COLUMNS;
     let row = 8;
     let squareColor = 'white';
+
+    if (orientation === 'black') row = 1;
+
     return (
-      <div style={{ ...boardStyles(context.width), ...context.boardStyle }}>
+      <div style={{ ...boardStyles(width), ...boardStyle }}>
         {[...Array(8)].map((_, r) => {
-          row = context.orientation === 'black' ? row + 1 : row - 1;
+          row = orientation === 'black' ? row + 1 : row - 1;
 
           return (
             <div key={r.toString()} style={rowStyles}>
               {[...Array(8)].map((_, col) => {
                 let square =
-                  context.orientation === 'black'
+                  orientation === 'black'
                     ? alpha[7 - col] + (row - 1)
                     : alpha[col] + (row + 1);
 
                 if (col !== 0)
                   squareColor = squareColor === 'black' ? 'white' : 'black';
+                return children({ square, squareColor, col, row, alpha });
               })}
             </div>
           );
