@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const getRow = (orientation, row) =>
@@ -8,7 +8,7 @@ const getRow = (orientation, row) =>
 const getColumn = (orientation, alpha, col) =>
   orientation === 'black' ? alpha[7 - col] : alpha[col];
 
-class Notation extends Component {
+class Notation extends PureComponent {
   static propTypes = {
     row: PropTypes.number,
     col: PropTypes.number,
@@ -18,12 +18,12 @@ class Notation extends Component {
     lightSquareStyle: PropTypes.object,
     darkSquareStyle: PropTypes.object
   };
-  shouldComponentUpdate(nextProps) {
-    if (this.props.showNotation !== nextProps.showNotation) {
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   if (this.props.showNotation !== nextProps.showNotation) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   render() {
     const {
