@@ -19,7 +19,7 @@ class Demo extends Component {
   render() {
     return (
       <div style={boardsContainer}>
-        {/* <div>
+        <div>
           <div style={board}>
             <Chessboard
               id="standard"
@@ -38,8 +38,8 @@ class Demo extends Component {
               // orientation="black"
             />
           </div>
-        </div> */}
-        <div>
+        </div>
+        {/* <div>
           <div style={board}>
             <HumanVsHuman>
               {({
@@ -69,12 +69,12 @@ class Demo extends Component {
                 />
               )}
             </HumanVsHuman>
-          </div>
-          {/* <div style={boardDescriptions}>
+          </div> */}
+        {/* <div style={boardDescriptions}>
               With move validation and rough.js
             </div>
           </div> */}
-          {/* <div>
+        {/* <div>
             <div style={board}>
               <RandomFEN>
                 {({ position }) => (
@@ -92,7 +92,7 @@ class Demo extends Component {
               Random positions set via position prop
             </div>
           </div> */}
-          {/* <div>
+        {/* <div>
             <div style={board}>
               <RandomVsRandom>
                 {({ position }) => (
@@ -110,7 +110,7 @@ class Demo extends Component {
               </RandomVsRandom>
             </div>
           </div> */}
-          {/* <div>
+        {/* <div>
             <div style={board}>
               <HumanVsRandom>
                 {({ position, onDrop, getPosition, darkSquareStyle }) => (
@@ -132,7 +132,7 @@ class Demo extends Component {
               <div style={boardDescriptions}>Human vs Random</div>
             </div>
           </div> */}
-          {/* <div>
+        {/* <div>
             <div style={board}>
               <Engine>
                 {({ position, onDrop }) => (
@@ -148,8 +148,8 @@ class Demo extends Component {
             </div>
             <div style={boardDescriptions}>Play Stockfish</div>
           </div>*/}
-        </div>
       </div>
+      // </div>
     );
   }
 }

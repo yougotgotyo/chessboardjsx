@@ -16,6 +16,7 @@ class Row extends Component {
     let alpha = COLUMNS;
     let row = 8;
     let squareColor = 'white';
+    console.log('render');
 
     if (orientation === 'black') row = 1;
 
