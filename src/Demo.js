@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Chessboard from './Chessboard';
-// import HumanVsRandom from './integrations/HumanVsRandom';
+import HumanVsRandom from './integrations/HumanVsRandom';
 import RandomVsRandom from './integrations/RandomVsRandom';
 import HumanVsHuman from './integrations/HumanVsHuman';
 import { roughSquare } from './integrations/customRough';
@@ -19,7 +19,7 @@ class Demo extends Component {
   render() {
     return (
       <div style={boardsContainer}>
-        {/* <div>
+        <div>
           <div style={board}>
             <Chessboard
               id="standard"
@@ -38,9 +38,9 @@ class Demo extends Component {
               // orientation="black"
             />
           </div>
-        </div> */}
+        </div>
         <div>
-          <div style={board}>
+          {/* <div style={board}>
             <HumanVsHuman>
               {({
                 position,
@@ -60,16 +60,16 @@ class Demo extends Component {
                   onDrop={onDrop}
                   onMouseOverSquare={onMouseOverSquare}
                   onMouseOutSquare={onMouseOutSquare}
-                  roughSquare={roughSquare}
+                  // roughSquare={roughSquare}
                   boardStyle={boardStyle}
                   showNotation={true}
                   orientation="black"
-                  getPosition={getPosition}
-                  darkSquareStyle={darkSquareStyle}
+                  // getPosition={getPosition}
+                  // darkSquareStyle={darkSquareStyle}
                 />
               )}
             </HumanVsHuman>
-          </div>
+          </div> */}
           {/* <div style={boardDescriptions}>
               With move validation and rough.js
             </div>
@@ -118,18 +118,13 @@ class Demo extends Component {
                     calcWidth={calcWidth}
                     id="humanVsRandom"
                     position={position}
-                    transitionDuration={300}
                     onDrop={onDrop}
-                    animationOnDrop="pulse"
                     boardStyle={boardStyle}
                     darkSquareStyle={darkSquareStyle}
                     getPosition={getPosition}
                   />
                 )}
               </HumanVsRandom>
-            </div>
-            <div>
-              <div style={boardDescriptions}>Human vs Random</div>
             </div>
           </div> */}
           {/* <div>
