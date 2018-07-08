@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 import Piece from './Piece';
 import Square from './Square';
 import Notation from './Notation';
-// import { COLUMNS } from './helpers';
 import Chessboard from './index';
 import PhantomPiece from './PhantomPiece';
 import Row from './Row';
