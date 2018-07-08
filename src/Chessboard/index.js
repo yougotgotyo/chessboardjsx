@@ -331,7 +331,8 @@ class Chessboard extends Component {
       this.setState({
         currentPosition: newPosition,
         sourceSquare,
-        targetSquare
+        targetSquare,
+        manualDrop: true
       });
       // get board position for user
       return getPosition(currentPosition);
@@ -344,7 +345,8 @@ class Chessboard extends Component {
     this.setState(() => ({
       currentPosition: newPosition,
       sourceSquare,
-      targetSquare
+      targetSquare,
+      manualDrop: true
     }));
     // get board position for user
     getPosition(currentPosition);

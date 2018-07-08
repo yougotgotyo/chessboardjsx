@@ -110,7 +110,6 @@ const pieceSource = {
         // execute user's logic
         return onDrop(props.currentSquare, dropResults.target);
       }
-      wasManuallyDropped(true);
       // set new position
       setPosition(piece, currentSquare, dropResults.target);
     }
