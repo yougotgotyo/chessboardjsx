@@ -34,32 +34,9 @@ class Board extends Component {
     Object.keys(currentPosition).includes(square);
 
   render() {
-    // let alpha = COLUMNS;
-    // let row = 8;
-    // let squareColor = 'white';
-
     return (
       <Chessboard.Consumer>
         {context => {
-          // return (
-          // <div
-          //   style={{ ...boardStyles(context.width), ...context.boardStyle }}
-          // >
-          //   {[...Array(8)].map((_, r) => {
-          //     row = context.orientation === 'black' ? row + 1 : row - 1;
-          //
-          //     return (
-          //       <div key={r.toString()} style={rowStyles}>
-          //         {[...Array(8)].map((_, col) => {
-          //           let square =
-          //             context.orientation === 'black'
-          //               ? alpha[7 - col] + (row - 1)
-          //               : alpha[col] + (row + 1);
-          //
-          //           if (col !== 0)
-          //             squareColor =
-          //               squareColor === 'black' ? 'white' : 'black';
-
           return (
             <Row
               width={context.width}
@@ -142,12 +119,6 @@ class Board extends Component {
               }}
             </Row>
           );
-          //         })}
-          //       </div>
-          //     );
-          //   })}
-          // </div>
-          // );
         }}
       </Chessboard.Consumer>
     );
@@ -155,15 +126,3 @@ class Board extends Component {
 }
 
 export default Board;
-
-// const boardStyles = width => ({
-//   width: width,
-//   height: width,
-//   cursor: 'default'
-// });
-//
-// const rowStyles = {
-//   display: 'flex',
-//   flexWrap: 'nowrap',
-//   width: '100%'
-// };

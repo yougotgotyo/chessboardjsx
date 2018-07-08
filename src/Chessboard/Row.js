@@ -11,21 +11,6 @@ class Row extends Component {
     children: PropTypes.func
   };
 
-  state = {
-    mounted: false
-  };
-
-  componentDidMount() {
-    this.setState({ mounted: true });
-  }
-
-  // shouldComponentUpdate(nextProps) {
-  //   if (!this.state.mounted) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   render() {
     const { width, boardStyle, orientation, children } = this.props;
     let alpha = COLUMNS;
