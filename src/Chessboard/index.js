@@ -216,36 +216,36 @@ class Chessboard extends Component {
     });
   };
 
-  componentDidUpdate(prevProps) {
-    const { position, transitionDuration, getPosition } = this.props;
-    const { waitForTransition } = this.state;
-    const positionFromProps = getPositionObject(position);
-    const previousPositionFromProps = getPositionObject(prevProps.position);
-
-    // Check if there is a new position coming from props
-    if (!isEqual(positionFromProps, previousPositionFromProps)) {
-      this.setState({ previousPositionFromProps });
-      // get board position for user
-      getPosition(positionFromProps);
-
-      // Give piece time to transition.
-      if (waitForTransition) {
-        return new Promise(resolve => {
-          this.setState({ currentPosition: positionFromProps }, () =>
-            setTimeout(() => {
-              this.setState({ waitForTransition: false });
-              resolve();
-            }, transitionDuration)
-          );
-        }).then(() =>
-          setTimeout(
-            () => this.setState({ phantomPiece: null }),
-            transitionDuration
-          )
-        );
-      }
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { position, transitionDuration, getPosition } = this.props;
+  //   const { waitForTransition } = this.state;
+  //   const positionFromProps = getPositionObject(position);
+  //   const previousPositionFromProps = getPositionObject(prevProps.position);
+  //
+  //   // Check if there is a new position coming from props
+  //   if (!isEqual(positionFromProps, previousPositionFromProps)) {
+  //     this.setState({ previousPositionFromProps });
+  //     // get board position for user
+  //     getPosition(positionFromProps);
+  //
+  //     // Give piece time to transition.
+  //     if (waitForTransition) {
+  //       return new Promise(resolve => {
+  //         this.setState({ currentPosition: positionFromProps }, () =>
+  //           setTimeout(() => {
+  //             this.setState({ waitForTransition: false });
+  //             resolve();
+  //           }, transitionDuration)
+  //         );
+  //       }).then(() =>
+  //         setTimeout(
+  //           () => this.setState({ phantomPiece: null }),
+  //           transitionDuration
+  //         )
+  //       );
+  //     }
+  //   }
+  // }
 
   static getDerivedStateFromProps(props, state) {
     const { position } = props;

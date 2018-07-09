@@ -6,7 +6,7 @@ import Chessboard from './Chessboard';
 // import HumanVsHuman from './integrations/HumanVsHuman';
 // import { roughSquare } from './integrations/customRough';
 // import RandomFEN from './integrations/RandomFEN';
-import bK from './img/kingJames.png';
+// import bK from './img/kingJames.png';
 
 // const calcWidth = screenWidth => (screenWidth < 500 ? 150 : 480);
 const boardStyle = {
@@ -34,7 +34,7 @@ class Demo extends Component {
               // animationOnDrop="rubberBand"
               sparePieces={true}
               boardStyle={boardStyle}
-              pieces={{ bK }}
+              // pieces={{ bK }}
               lightSquareStyle={{ backgroundColor: 'yellow' }}
               orientation="black"
               showNotation={false}
