@@ -27,7 +27,6 @@ class Row extends Component {
           return (
             <div key={r.toString()} style={rowStyles(width)}>
               {[...Array(8)].map((_, col) => {
-                console.log('here');
                 let square =
                   orientation === 'black'
                     ? alpha[7 - col] + (row - 1)
