@@ -17,6 +17,7 @@ import CustomDragLayer from './CustomDragLayer';
 import defaultPieces from './svg/chesspieces/standard';
 import { renderPieces } from './RenderPieces';
 import ErrorBoundary from './ErrorBoundary';
+import BoardSkin from './BoardSkin';
 
 const ChessboardContext = React.createContext();
 
@@ -407,6 +408,7 @@ class Chessboard extends Component {
           <div>
             {sparePieces && <SparePieces.Top />}
             <Board />
+            <BoardSkin />
             {sparePieces && <SparePieces.Bottom />}
           </div>
           <CustomDragLayer
