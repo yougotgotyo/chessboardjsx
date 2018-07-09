@@ -8,7 +8,7 @@ import Chessboard from './Chessboard';
 // import RandomFEN from './integrations/RandomFEN';
 // import bK from './img/kingJames.png';
 
-// const calcWidth = screenWidth => (screenWidth < 500 ? 150 : 480);
+const calcWidth = screenWidth => (screenWidth < 500 ? 150 : 480);
 const boardStyle = {
   borderRadius: '5px',
   boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
@@ -23,8 +23,8 @@ class Demo extends Component {
           <div style={board}>
             <Chessboard
               id="standard"
-              // calcWidth={calcWidth}
-              width={500}
+              calcWidth={calcWidth}
+              // width={500}
               position="start"
               // position={{
               //   d6: 'bK',

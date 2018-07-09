@@ -39,6 +39,7 @@ class BoardSkin extends PureComponent {
     Object.keys(currentPosition).includes(square);
 
   render() {
+    console.log('width', this.props.width);
     return (
       <Row
         width={this.props.width}

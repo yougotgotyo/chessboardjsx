@@ -216,36 +216,36 @@ class Chessboard extends Component {
     });
   };
 
-  // componentDidUpdate(prevProps) {
-  //   const { position, transitionDuration, getPosition } = this.props;
-  //   const { waitForTransition } = this.state;
-  //   const positionFromProps = getPositionObject(position);
-  //   const previousPositionFromProps = getPositionObject(prevProps.position);
-  //
-  //   // Check if there is a new position coming from props
-  //   if (!isEqual(positionFromProps, previousPositionFromProps)) {
-  //     this.setState({ previousPositionFromProps });
-  //     // get board position for user
-  //     getPosition(positionFromProps);
-  //
-  //     // Give piece time to transition.
-  //     if (waitForTransition) {
-  //       return new Promise(resolve => {
-  //         this.setState({ currentPosition: positionFromProps }, () =>
-  //           setTimeout(() => {
-  //             this.setState({ waitForTransition: false });
-  //             resolve();
-  //           }, transitionDuration)
-  //         );
-  //       }).then(() =>
-  //         setTimeout(
-  //           () => this.setState({ phantomPiece: null }),
-  //           transitionDuration
-  //         )
-  //       );
-  //     }
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { position, transitionDuration, getPosition } = this.props;
+    const { waitForTransition } = this.state;
+    const positionFromProps = getPositionObject(position);
+    const previousPositionFromProps = getPositionObject(prevProps.position);
+
+    // Check if there is a new position coming from props
+    if (!isEqual(positionFromProps, previousPositionFromProps)) {
+      this.setState({ previousPositionFromProps });
+      // get board position for user
+      getPosition(positionFromProps);
+
+      // Give piece time to transition.
+      if (waitForTransition) {
+        return new Promise(resolve => {
+          this.setState({ currentPosition: positionFromProps }, () =>
+            setTimeout(() => {
+              this.setState({ waitForTransition: false });
+              resolve();
+            }, transitionDuration)
+          );
+        }).then(() =>
+          setTimeout(
+            () => this.setState({ phantomPiece: null }),
+            transitionDuration
+          )
+        );
+      }
+    }
+  }
 
   static getDerivedStateFromProps(props, state) {
     const { position } = props;
@@ -364,8 +364,15 @@ class Chessboard extends Component {
   // Allows for touch drag and drop
   setTouchState = e => this.setState({ wasPieceTouched: e.isTrusted });
 
+  getWidth = () => {
+    const { screenWidth, screenHeight } = this.state;
+    return this.props.calcWidth(screenWidth, screenHeight)
+      ? this.props.calcWidth(screenWidth, screenHeight)
+      : this.props.width;
+  };
+
   render() {
-    console.log(this.state);
+    console.log(this.state.screenWidth, this.state.screenHeight);
     const {
       sourceSquare,
       targetSquare,
@@ -388,9 +395,7 @@ class Chessboard extends Component {
             orientation: this.props.orientation.toLowerCase(),
             dropOffBoard: this.props.dropOffBoard.toLowerCase(),
             ...{
-              width: this.props.calcWidth(screenWidth, screenHeight)
-                ? this.props.calcWidth(screenWidth, screenHeight)
-                : this.props.width,
+              width: this.getWidth(),
               sourceSquare,
               targetSquare,
               sourcePiece,
@@ -409,18 +414,21 @@ class Chessboard extends Component {
           <div>
             {this.props.sparePieces && <SparePieces.Top />}
             {/* <Board /> */}
-            <BoardSkin
-              width={this.props.width}
-              boardStyle={this.props.boardStyle}
-              orientation={this.props.orientation}
-              lightSquareStyle={this.props.lightSquareStyle}
-              darkSquareStyle={this.props.darkSquareStyle}
-              roughSquare={this.props.roughSquare}
-              id={this.props.id}
-              screenWidth={screenWidth}
-              screenHeight={screenHeight}
-              setSquareCoordinates={this.setSquareCoordinates}
-            />
+            {screenWidth &&
+              screenHeight && (
+                <BoardSkin
+                  width={this.getWidth()}
+                  boardStyle={this.props.boardStyle}
+                  orientation={this.props.orientation}
+                  lightSquareStyle={this.props.lightSquareStyle}
+                  darkSquareStyle={this.props.darkSquareStyle}
+                  roughSquare={this.props.roughSquare}
+                  id={this.props.id}
+                  screenWidth={screenWidth}
+                  screenHeight={screenHeight}
+                  setSquareCoordinates={this.setSquareCoordinates}
+                />
+              )}
 
             {this.props.sparePieces && <SparePieces.Bottom />}
           </div>
