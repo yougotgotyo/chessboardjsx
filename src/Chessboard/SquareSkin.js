@@ -26,6 +26,7 @@ class SquareSkin extends PureComponent {
   };
 
   componentDidMount() {
+    console.log('mounting');
     const { square, setSquareCoordinates, width, roughSquare } = this.props;
     roughSquare(this.roughSquareSvg, width / 8);
 
@@ -34,6 +35,7 @@ class SquareSkin extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    console.log('updating');
     const {
       screenWidth,
       screenHeight,

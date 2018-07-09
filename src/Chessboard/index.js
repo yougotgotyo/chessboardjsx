@@ -399,7 +399,7 @@ class Chessboard extends Component {
         >
           <div>
             {this.props.sparePieces && <SparePieces.Top />}
-            {/* <Board /> */}
+            <Board />
             <BoardSkin
               width={this.props.width}
               boardStyle={this.props.boardStyle}
@@ -411,6 +411,7 @@ class Chessboard extends Component {
               screenWidth={screenWidth}
               screenHeight={screenHeight}
             />
+
             {this.props.sparePieces && <SparePieces.Bottom />}
           </div>
           <CustomDragLayer
