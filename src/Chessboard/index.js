@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Board from './Board';
+// import Board from './Board';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import { DragDropContext } from 'react-dnd';
@@ -317,6 +317,14 @@ class Chessboard extends Component {
     return null;
   }
 
+  setSquareCoordinates = (x, y, square) =>
+    this.setState({ [square]: { x, y } });
+
+  getSquareCoordinates = (sourceSquare, targetSquare) => ({
+    sourceSquare: this.state[sourceSquare],
+    targetSquare: this.state[targetSquare]
+  });
+
   wasManuallyDropped = bool => this.setState({ manualDrop: bool });
 
   /* Called on drop if there is no onDrop prop.  This is what executes when a position does not
@@ -357,6 +365,7 @@ class Chessboard extends Component {
   setTouchState = e => this.setState({ wasPieceTouched: e.isTrusted });
 
   render() {
+    console.log(this.state);
     const {
       sourceSquare,
       targetSquare,
@@ -399,7 +408,7 @@ class Chessboard extends Component {
         >
           <div>
             {this.props.sparePieces && <SparePieces.Top />}
-            <Board />
+            {/* <Board /> */}
             <BoardSkin
               width={this.props.width}
               boardStyle={this.props.boardStyle}
@@ -410,6 +419,7 @@ class Chessboard extends Component {
               id={this.props.id}
               screenWidth={screenWidth}
               screenHeight={screenHeight}
+              setSquareCoordinates={this.setSquareCoordinates}
             />
 
             {this.props.sparePieces && <SparePieces.Bottom />}

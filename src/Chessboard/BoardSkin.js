@@ -18,16 +18,9 @@ class BoardSkin extends PureComponent {
     lightSquareStyle: PropTypes.object,
     darkSquareStyle: PropTypes.object,
     roughSquare: PropTypes.func,
-    showNotation: PropTypes.bool
+    showNotation: PropTypes.bool,
+    setSquareCoordinates: PropTypes.func
   };
-
-  setSquareCoordinates = (x, y, square) =>
-    this.setState({ [square]: { x, y } });
-
-  getSquareCoordinates = (sourceSquare, targetSquare) => ({
-    sourceSquare: this.state[sourceSquare],
-    targetSquare: this.state[targetSquare]
-  });
 
   showPhantom = ({ square, targetSquare, phantomPiece }) => {
     const isActivePiece = (square, targetSquare) =>
@@ -67,7 +60,7 @@ class BoardSkin extends PureComponent {
               width={this.props.width}
               square={props.square}
               squareColor={props.squareColor}
-              setSquareCoordinates={this.setSquareCoordinates}
+              setSquareCoordinates={this.props.setSquareCoordinates}
               lightSquareStyle={this.props.lightSquareStyle}
               darkSquareStyle={this.props.darkSquareStyle}
               roughSquare={this.props.roughSquare}
@@ -123,10 +116,10 @@ class BoardSkin extends PureComponent {
                   row={props.row}
                   col={props.col}
                   alpha={props.alpha}
-                  orientation={props.orientation}
-                  width={props.width}
-                  lightSquareStyle={props.lightSquareStyle}
-                  darkSquareStyle={props.darkSquareStyle}
+                  orientation={this.props.orientation}
+                  width={this.props.width}
+                  lightSquareStyle={this.props.lightSquareStyle}
+                  darkSquareStyle={this.props.darkSquareStyle}
                 />
               )}
             </SquareSkin>
