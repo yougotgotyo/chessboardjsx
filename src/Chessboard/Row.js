@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { COLUMNS } from './helpers';
 
-class Row extends Component {
+class Row extends PureComponent {
   static propTypes = {
     width: PropTypes.number,
     orientation: PropTypes.string,
     boardStyle: PropTypes.object,
-    children: PropTypes.func
+    children: PropTypes.func,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    screenWidth: PropTypes.number,
+    screenHeight: PropTypes.number,
+    lightSquareStyle: PropTypes.object,
+    darkSquareStyle: PropTypes.object,
+    roughSquare: PropTypes.func,
+    setSquareCoordinates: PropTypes.func
   };
 
   render() {
@@ -36,7 +43,14 @@ class Row extends Component {
                 if (col !== 0) {
                   squareColor = squareColor === 'black' ? 'white' : 'black';
                 }
-                return children({ square, squareColor, col, row, alpha });
+                return children({
+                  square,
+                  squareColor,
+                  col,
+                  row,
+                  alpha,
+                  ...this.props
+                });
               })}
             </div>
           );

@@ -1,6 +1,6 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 
-import Piece from './Piece';
+// import Piece from './Piece';
 import SquareSkin from './SquareSkin';
 import Notation from './Notation';
 import Chessboard from './index';
@@ -41,7 +41,6 @@ class BoardSkin extends PureComponent {
               width={context.width}
               boardStyle={context.boardStyle}
               orientation={context.orientation}
-              squareColor={context.squareColor}
               lightSquareStyle={context.lightSquareStyle}
               darkSquareStyle={context.darkSquareStyle}
               roughSquare={context.roughSquare}
@@ -52,26 +51,26 @@ class BoardSkin extends PureComponent {
             >
               {props => {
                 return (
-                  <Fragment key={`${props.col}${props.row}`}>
-                    <SquareSkin
-                      key={props.col.toString()}
-                      width={props.width}
-                      square={props.square}
-                      squareColor={props.squareColor}
-                      setSquareCoordinates={props.setSquareCoordinates}
-                      lightSquareStyle={props.lightSquareStyle}
-                      darkSquareStyle={props.darkSquareStyle}
-                      roughSquare={props.roughSquare}
-                      // selectedSquares={context.selectedSquares}
-                      // onMouseOverSquare={context.onMouseOverSquare}
-                      // onMouseOutSquare={context.onMouseOutSquare}
-                      // onHoverSquareStyle={context.onHoverSquareStyle}
-                      // selectedSquareStyle={context.selectedSquareStyle}
-                      id={props.id}
-                      screenWidth={props.screenWidth}
-                      screenHeight={props.screenHeight}
-                    >
-                      {/* {this.hasPiece(context.currentPosition, square) ? (
+                  // <Fragment key={`${props.col}${props.row}`}>
+                  <SquareSkin
+                    key={`${props.col}${props.row}`}
+                    width={props.width}
+                    square={props.square}
+                    squareColor={props.squareColor}
+                    setSquareCoordinates={props.setSquareCoordinates}
+                    lightSquareStyle={props.lightSquareStyle}
+                    darkSquareStyle={props.darkSquareStyle}
+                    roughSquare={props.roughSquare}
+                    // selectedSquares={context.selectedSquares}
+                    // onMouseOverSquare={context.onMouseOverSquare}
+                    // onMouseOutSquare={context.onMouseOutSquare}
+                    // onHoverSquareStyle={context.onHoverSquareStyle}
+                    // selectedSquareStyle={context.selectedSquareStyle}
+                    id={props.id}
+                    screenWidth={props.screenWidth}
+                    screenHeight={props.screenHeight}
+                  >
+                    {/* {this.hasPiece(context.currentPosition, square) ? (
                         <Piece
                           pieces={context.pieces}
                           currentSquare={square}
@@ -94,7 +93,7 @@ class BoardSkin extends PureComponent {
                         />
                       ) : null} */}
 
-                      {/* {this.showPhantom({
+                    {/* {this.showPhantom({
                         square,
                         targetSquare: context.targetSquare,
                         phantomPiece: context.phantomPiece
@@ -109,19 +108,19 @@ class BoardSkin extends PureComponent {
                         />
                       )} */}
 
-                      {context.showNotation && (
-                        <Notation
-                          row={props.row}
-                          col={props.col}
-                          alpha={props.alpha}
-                          orientation={props.orientation}
-                          width={props.width}
-                          lightSquareStyle={props.lightSquareStyle}
-                          darkSquareStyle={props.darkSquareStyle}
-                        />
-                      )}
-                    </SquareSkin>
-                  </Fragment>
+                    {context.showNotation && (
+                      <Notation
+                        row={props.row}
+                        col={props.col}
+                        alpha={props.alpha}
+                        orientation={props.orientation}
+                        width={props.width}
+                        lightSquareStyle={props.lightSquareStyle}
+                        darkSquareStyle={props.darkSquareStyle}
+                      />
+                    )}
+                  </SquareSkin>
+                  // </Fragment>
                 );
               }}
             </Row>
