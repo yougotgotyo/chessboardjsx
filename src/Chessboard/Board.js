@@ -33,7 +33,6 @@ class Board extends Component {
     Object.keys(currentPosition).includes(square);
 
   render() {
-    console.log('board');
     return (
       <Chessboard.Consumer>
         {context => {

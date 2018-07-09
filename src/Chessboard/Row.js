@@ -25,7 +25,7 @@ class Row extends Component {
           row = orientation === 'black' ? row + 1 : row - 1;
 
           return (
-            <div key={r.toString()} style={rowStyles}>
+            <div key={r.toString()} style={rowStyles(width)}>
               {[...Array(8)].map((_, col) => {
                 console.log('here');
                 let square =
@@ -54,8 +54,8 @@ const boardStyles = width => ({
   cursor: 'default'
 });
 
-const rowStyles = {
+const rowStyles = width => ({
   display: 'flex',
   flexWrap: 'nowrap',
-  width: '100%'
-};
+  width
+});

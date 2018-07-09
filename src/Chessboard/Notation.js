@@ -1,4 +1,3 @@
-/* eslint react/prop-types: 0 */
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,12 +17,6 @@ class Notation extends PureComponent {
     lightSquareStyle: PropTypes.object,
     darkSquareStyle: PropTypes.object
   };
-  // shouldComponentUpdate(nextProps) {
-  //   if (this.props.showNotation !== nextProps.showNotation) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
   render() {
     const {
@@ -88,6 +81,7 @@ class Notation extends PureComponent {
 
 export default Notation;
 
+/* eslint react/prop-types: 0 */
 function renderBottomLeft({ orientation, row, width, alpha, col, whiteColor }) {
   return (
     <Fragment>
