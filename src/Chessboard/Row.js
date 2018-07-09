@@ -8,18 +8,19 @@ class Row extends PureComponent {
     width: PropTypes.number,
     orientation: PropTypes.string,
     boardStyle: PropTypes.object,
-    children: PropTypes.func,
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    screenWidth: PropTypes.number,
-    screenHeight: PropTypes.number,
-    lightSquareStyle: PropTypes.object,
-    darkSquareStyle: PropTypes.object,
-    roughSquare: PropTypes.func,
-    setSquareCoordinates: PropTypes.func
+    children: PropTypes.func
+    // id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    // screenWidth: PropTypes.number,
+    // screenHeight: PropTypes.number,
+    // lightSquareStyle: PropTypes.object,
+    // darkSquareStyle: PropTypes.object,
+    // roughSquare: PropTypes.func,
+    // setSquareCoordinates: PropTypes.func
   };
 
   render() {
     const { width, boardStyle, orientation, children } = this.props;
+    console.log('render');
     let alpha = COLUMNS;
     let row = 8;
     let squareColor = 'white';
@@ -48,8 +49,7 @@ class Row extends PureComponent {
                   squareColor,
                   col,
                   row,
-                  alpha,
-                  ...this.props
+                  alpha
                 });
               })}
             </div>

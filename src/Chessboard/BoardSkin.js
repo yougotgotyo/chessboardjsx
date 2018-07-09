@@ -1,13 +1,26 @@
 import React, { PureComponent } from 'react';
-
+import PropTypes from 'prop-types';
 // import Piece from './Piece';
 import SquareSkin from './SquareSkin';
 import Notation from './Notation';
-import Chessboard from './index';
 // import PhantomPiece from './PhantomPiece';
 import Row from './Row';
 
 class BoardSkin extends PureComponent {
+  static propTypes = {
+    width: PropTypes.number,
+    orientation: PropTypes.string,
+    boardStyle: PropTypes.object,
+    children: PropTypes.func,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    screenWidth: PropTypes.number,
+    screenHeight: PropTypes.number,
+    lightSquareStyle: PropTypes.object,
+    darkSquareStyle: PropTypes.object,
+    roughSquare: PropTypes.func,
+    showNotation: PropTypes.bool
+  };
+
   setSquareCoordinates = (x, y, square) =>
     this.setState({ [square]: { x, y } });
 
@@ -34,43 +47,40 @@ class BoardSkin extends PureComponent {
 
   render() {
     return (
-      <Chessboard.Consumer>
-        {context => {
+      <Row
+        width={this.props.width}
+        boardStyle={this.props.boardStyle}
+        orientation={this.props.orientation}
+        // lightSquareStyle={this.props.lightSquareStyle}
+        // darkSquareStyle={this.props.darkSquareStyle}
+        // roughSquare={this.props.roughSquare}
+        // setSquareCoordinates={this.setSquareCoordinates}
+        // id={this.props.id}
+        // screenWidth={this.props.screenWidth}
+        // screenHeight={this.props.screenHeight}
+      >
+        {props => {
           return (
-            <Row
-              width={context.width}
-              boardStyle={context.boardStyle}
-              orientation={context.orientation}
-              lightSquareStyle={context.lightSquareStyle}
-              darkSquareStyle={context.darkSquareStyle}
-              roughSquare={context.roughSquare}
+            // <Fragment key={`${props.col}${props.row}`}>
+            <SquareSkin
+              key={`${props.col}${props.row}`}
+              width={this.props.width}
+              square={props.square}
+              squareColor={props.squareColor}
               setSquareCoordinates={this.setSquareCoordinates}
-              id={context.id}
-              screenWidth={context.screenWidth}
-              screenHeight={context.screenHeight}
+              lightSquareStyle={this.props.lightSquareStyle}
+              darkSquareStyle={this.props.darkSquareStyle}
+              roughSquare={this.props.roughSquare}
+              // selectedSquares={context.selectedSquares}
+              // onMouseOverSquare={context.onMouseOverSquare}
+              // onMouseOutSquare={context.onMouseOutSquare}
+              // onHoverSquareStyle={context.onHoverSquareStyle}
+              // selectedSquareStyle={context.selectedSquareStyle}
+              id={this.props.id}
+              screenWidth={this.props.screenWidth}
+              screenHeight={this.props.screenHeight}
             >
-              {props => {
-                return (
-                  // <Fragment key={`${props.col}${props.row}`}>
-                  <SquareSkin
-                    key={`${props.col}${props.row}`}
-                    width={props.width}
-                    square={props.square}
-                    squareColor={props.squareColor}
-                    setSquareCoordinates={props.setSquareCoordinates}
-                    lightSquareStyle={props.lightSquareStyle}
-                    darkSquareStyle={props.darkSquareStyle}
-                    roughSquare={props.roughSquare}
-                    // selectedSquares={context.selectedSquares}
-                    // onMouseOverSquare={context.onMouseOverSquare}
-                    // onMouseOutSquare={context.onMouseOutSquare}
-                    // onHoverSquareStyle={context.onHoverSquareStyle}
-                    // selectedSquareStyle={context.selectedSquareStyle}
-                    id={props.id}
-                    screenWidth={props.screenWidth}
-                    screenHeight={props.screenHeight}
-                  >
-                    {/* {this.hasPiece(context.currentPosition, square) ? (
+              {/* {this.hasPiece(context.currentPosition, square) ? (
                         <Piece
                           pieces={context.pieces}
                           currentSquare={square}
@@ -93,7 +103,7 @@ class BoardSkin extends PureComponent {
                         />
                       ) : null} */}
 
-                    {/* {this.showPhantom({
+              {/* {this.showPhantom({
                         square,
                         targetSquare: context.targetSquare,
                         phantomPiece: context.phantomPiece
@@ -108,25 +118,22 @@ class BoardSkin extends PureComponent {
                         />
                       )} */}
 
-                    {context.showNotation && (
-                      <Notation
-                        row={props.row}
-                        col={props.col}
-                        alpha={props.alpha}
-                        orientation={props.orientation}
-                        width={props.width}
-                        lightSquareStyle={props.lightSquareStyle}
-                        darkSquareStyle={props.darkSquareStyle}
-                      />
-                    )}
-                  </SquareSkin>
-                  // </Fragment>
-                );
-              }}
-            </Row>
+              {this.props.showNotation && (
+                <Notation
+                  row={props.row}
+                  col={props.col}
+                  alpha={props.alpha}
+                  orientation={props.orientation}
+                  width={props.width}
+                  lightSquareStyle={props.lightSquareStyle}
+                  darkSquareStyle={props.darkSquareStyle}
+                />
+              )}
+            </SquareSkin>
+            // </Fragment>
           );
         }}
-      </Chessboard.Consumer>
+      </Row>
     );
   }
 }

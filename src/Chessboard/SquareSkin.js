@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 // import { DropTarget } from 'react-dnd';
 
 // import { ItemTypes } from './helpers';
 
-class SquareSkin extends Component {
+class SquareSkin extends PureComponent {
   static propTypes = {
     // connectDropTarget: PropTypes.func,
     width: PropTypes.number,

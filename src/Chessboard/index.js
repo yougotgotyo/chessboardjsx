@@ -358,14 +358,6 @@ class Chessboard extends Component {
 
   render() {
     const {
-      sparePieces,
-      width,
-      id,
-      calcWidth,
-      orientation,
-      dropOffBoard
-    } = this.props;
-    const {
       sourceSquare,
       targetSquare,
       sourcePiece,
@@ -384,12 +376,12 @@ class Chessboard extends Component {
           value={{
             ...this.props,
             pieces: Object.keys(pieces).length ? pieces : defaultPieces,
-            orientation: orientation.toLowerCase(),
-            dropOffBoard: dropOffBoard.toLowerCase(),
+            orientation: this.props.orientation.toLowerCase(),
+            dropOffBoard: this.props.dropOffBoard.toLowerCase(),
             ...{
-              width: calcWidth(screenWidth, screenHeight)
-                ? calcWidth(screenWidth, screenHeight)
-                : width,
+              width: this.props.calcWidth(screenWidth, screenHeight)
+                ? this.props.calcWidth(screenWidth, screenHeight)
+                : this.props.width,
               sourceSquare,
               targetSquare,
               sourcePiece,
@@ -406,19 +398,29 @@ class Chessboard extends Component {
           }}
         >
           <div>
-            {sparePieces && <SparePieces.Top />}
-            <Board />
-            <BoardSkin />
-            {sparePieces && <SparePieces.Bottom />}
+            {this.props.sparePieces && <SparePieces.Top />}
+            {/* <Board /> */}
+            <BoardSkin
+              width={this.props.width}
+              boardStyle={this.props.boardStyle}
+              orientation={this.props.orientation}
+              lightSquareStyle={this.props.lightSquareStyle}
+              darkSquareStyle={this.props.darkSquareStyle}
+              roughSquare={this.props.roughSquare}
+              id={this.props.id}
+              screenWidth={screenWidth}
+              screenHeight={screenHeight}
+            />
+            {this.props.sparePieces && <SparePieces.Bottom />}
           </div>
           <CustomDragLayer
             width={
-              calcWidth(screenWidth, screenHeight)
-                ? calcWidth(screenWidth, screenHeight)
-                : width
+              this.props.calcWidth(screenWidth, screenHeight)
+                ? this.props.calcWidth(screenWidth, screenHeight)
+                : this.props.width
             }
             pieces={Object.keys(pieces).length ? pieces : defaultPieces}
-            id={id}
+            id={this.props.id}
             wasPieceTouched={wasPieceTouched}
           />
         </ChessboardContext.Provider>

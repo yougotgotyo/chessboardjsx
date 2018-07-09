@@ -32,10 +32,13 @@ class Demo extends Component {
               //   e4: 'wK'
               // }}
               // animationOnDrop="rubberBand"
-              // sparePieces={true}
+              sparePieces={true}
               boardStyle={boardStyle}
               pieces={{ bK }}
-              // orientation="black"
+              lightSquareStyle={{ backgroundColor: 'yellow' }}
+              orientation="black"
+              showNotation={false}
+              draggable={true}
             />
           </div>
         </div>
