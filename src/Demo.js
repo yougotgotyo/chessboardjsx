@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import Chessboard from './Chessboard';
-import HumanVsRandom from './integrations/HumanVsRandom';
-import RandomVsRandom from './integrations/RandomVsRandom';
-import HumanVsHuman from './integrations/HumanVsHuman';
-import { roughSquare } from './integrations/customRough';
+// import HumanVsRandom from './integrations/HumanVsRandom';
+// import RandomVsRandom from './integrations/RandomVsRandom';
+// import HumanVsHuman from './integrations/HumanVsHuman';
+// import { roughSquare } from './integrations/customRough';
 // import RandomFEN from './integrations/RandomFEN';
 import bK from './img/kingJames.png';
 
-const calcWidth = screenWidth => (screenWidth < 500 ? 150 : 480);
+// const calcWidth = screenWidth => (screenWidth < 500 ? 150 : 480);
 const boardStyle = {
   borderRadius: '5px',
   boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
