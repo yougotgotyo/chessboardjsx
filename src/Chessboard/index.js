@@ -355,15 +355,16 @@ class Chessboard extends Component {
   // Allows for touch drag and drop
   setTouchState = e => this.setState({ wasPieceTouched: e.isTrusted });
 
+  getWidth = () => {
+    const { calcWidth, width } = this.props;
+    const { screenWidth, screenHeight } = this.state;
+    return calcWidth(screenWidth, screenHeight)
+      ? calcWidth(screenWidth, screenHeight)
+      : width;
+  };
+
   render() {
-    const {
-      sparePieces,
-      width,
-      id,
-      calcWidth,
-      orientation,
-      dropOffBoard
-    } = this.props;
+    const { sparePieces, id, orientation, dropOffBoard } = this.props;
     const {
       sourceSquare,
       targetSquare,
@@ -386,9 +387,7 @@ class Chessboard extends Component {
             orientation: orientation.toLowerCase(),
             dropOffBoard: dropOffBoard.toLowerCase(),
             ...{
-              width: calcWidth(screenWidth, screenHeight)
-                ? calcWidth(screenWidth, screenHeight)
-                : width,
+              width: this.getWidth(),
               sourceSquare,
               targetSquare,
               sourcePiece,
@@ -406,15 +405,11 @@ class Chessboard extends Component {
         >
           <div>
             {sparePieces && <SparePieces.Top />}
-            <Board />
+            {screenWidth && screenHeight && <Board />}
             {sparePieces && <SparePieces.Bottom />}
           </div>
           <CustomDragLayer
-            width={
-              calcWidth(screenWidth, screenHeight)
-                ? calcWidth(screenWidth, screenHeight)
-                : width
-            }
+            width={this.getWidth()}
             pieces={Object.keys(pieces).length ? pieces : defaultPieces}
             id={id}
             wasPieceTouched={wasPieceTouched}

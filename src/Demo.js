@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Chessboard from './Chessboard';
 // import HumanVsRandom from './integrations/HumanVsRandom';
-// import RandomVsRandom from './integrations/RandomVsRandom';
+import RandomVsRandom from './integrations/RandomVsRandom';
 // import HumanVsHuman from './integrations/HumanVsHuman';
 // import { roughSquare } from './integrations/customRough';
 // import RandomFEN from './integrations/RandomFEN';
