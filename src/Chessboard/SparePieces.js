@@ -55,6 +55,7 @@ class SparePieces extends Component {
                     id={context.id}
                     pieces={context.pieces}
                     wasManuallyDropped={context.wasManuallyDropped}
+                    onPieceClick={context.onPieceClick}
                   />
                 </div>
               ))}

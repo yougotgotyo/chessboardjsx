@@ -37,7 +37,7 @@ export default function CustomizedBoard() {
               height: isDragging ? squareWidth * 1.75 : squareWidth
             }}
             src={lebronJames}
-            alt={'elvis'}
+            alt={'lebron james'}
           />
         )
       }}
