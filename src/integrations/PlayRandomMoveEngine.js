@@ -29,7 +29,8 @@ class HumanVsRandom extends Component {
     this.setState({
       fen: this.game.fen(),
       squareStyles: {
-        [this.game.history()[this.game.history().length - 1]]: {
+        [this.game.history({ verbose: true })[this.game.history().length - 1]
+          .to]: {
           backgroundColor: 'DarkTurquoise'
         }
       }
