@@ -26,7 +26,7 @@ class HumanVsRandom extends Component {
 
     let randomIndex = Math.floor(Math.random() * possibleMoves.length);
     this.game.move(possibleMoves[randomIndex]);
-    this.setState({ fen: this.game.fen() });
+    this.setState({ fen: this.game.fen(), squareStyles: {} });
   };
 
   onDrop = ({ sourceSquare, targetSquare }) => {
@@ -65,11 +65,12 @@ class HumanVsRandom extends Component {
   };
 
   render() {
-    const { fen } = this.state;
+    const { fen, squareStyles } = this.state;
     return this.props.children({
       position: fen,
       onDrop: this.onDrop,
-      onSquareClick: this.onSquareClick
+      onSquareClick: this.onSquareClick,
+      squareStyles
     });
   }
 }
@@ -78,7 +79,7 @@ export default function PlayRandomMoveEngine() {
   return (
     <div>
       <HumanVsRandom>
-        {({ position, onDrop, onSquareClick }) => (
+        {({ position, onDrop, onSquareClick, squareStyles }) => (
           <Chessboard
             calcWidth={screenWidth => (screenWidth < 500 ? 350 : 480)}
             id="humanVsRandom"
@@ -89,6 +90,7 @@ export default function PlayRandomMoveEngine() {
               boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
             }}
             onSquareClick={onSquareClick}
+            squareStyles={squareStyles}
           />
         )}
       </HumanVsRandom>

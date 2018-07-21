@@ -11,6 +11,7 @@ export default function CustomizedBoard() {
   return (
     <Chessboard
       id="standard"
+      orientation="black"
       calcWidth={screenWidth => (screenWidth < 500 ? 350 : 480)}
       roughSquare={roughSquare}
       position="start"
