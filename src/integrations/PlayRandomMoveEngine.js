@@ -26,7 +26,14 @@ class HumanVsRandom extends Component {
 
     let randomIndex = Math.floor(Math.random() * possibleMoves.length);
     this.game.move(possibleMoves[randomIndex]);
-    this.setState({ fen: this.game.fen(), squareStyles: {} });
+    this.setState({
+      fen: this.game.fen(),
+      squareStyles: {
+        [this.game.history()[this.game.history().length - 1]]: {
+          backgroundColor: 'DarkTurquoise'
+        }
+      }
+    });
   };
 
   onDrop = ({ sourceSquare, targetSquare }) => {
