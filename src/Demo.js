@@ -27,7 +27,7 @@ class Demo extends Component {
             }
             style={{ ...buttonStyle, ...{ backgroundColor: 'orange' } }}
           >
-            Click for Custom Board
+            Custom Board
           </button>
           <button
             onClick={() =>
@@ -43,7 +43,7 @@ class Demo extends Component {
               ...{ backgroundColor: 'purple', color: 'white' }
             }}
           >
-            Click for Board With Move Validation
+            With Move Validation
           </button>
           <button
             onClick={() =>
@@ -56,7 +56,7 @@ class Demo extends Component {
             }
             style={{ ...buttonStyle, ...{ backgroundColor: 'gold' } }}
           >
-            Click for Board Playing a Random Game
+            Random Vs Random
           </button>
           <button
             onClick={() =>
@@ -69,7 +69,7 @@ class Demo extends Component {
             }
             style={{ ...buttonStyle, ...{ backgroundColor: 'silver' } }}
           >
-            Click to Play a Random Move Engine
+            Play a Random Move Engine
           </button>
         </div>
         <div style={boardsContainer}>
